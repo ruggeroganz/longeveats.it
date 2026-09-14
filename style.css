@@ -1,0 +1,187 @@
+:root {
+  --sage: #A8AD9F;
+  --cream: #EAE8DA;
+  --deep: #393D34;
+  --dark: #1A1C17;
+  --font: Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font);
+  font-weight: 300;
+  color: var(--cream);
+  background: var(--dark);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Fixed bowl photo behind everything, from top to footer */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url("assets/bowl.jpg") center 40% / cover no-repeat;
+  opacity: 0.32;
+}
+.backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(168, 173, 159, 0.28), transparent 70%),
+    linear-gradient(180deg, rgba(26, 28, 23, 0.55) 0%, rgba(57, 61, 52, 0.55) 55%, rgba(26, 28, 23, 0.85) 100%);
+}
+
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 1px solid var(--sage); outline-offset: 4px; }
+
+/* ---------- First screen ---------- */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2rem 3rem;
+}
+
+.topbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-btn {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  padding: 0.7rem 1.3rem;
+  border: 1px solid rgba(234, 232, 218, 0.55);
+  border-radius: 999px;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.menu-btn:hover { background: var(--cream); color: var(--dark); border-color: var(--cream); }
+
+.logo { margin-top: 0.5rem; }
+.logo img { width: clamp(220px, 28vw, 360px); height: auto; display: block; }
+
+.hero-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem 0;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: clamp(2rem, 4.6vw, 4rem);
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  max-width: 22ch;
+}
+
+.pillars {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.6rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  color: var(--sage);
+}
+.pillars li { padding: 0 1.6rem; position: relative; }
+.pillars li + li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 1em;
+  transform: translateY(-50%);
+  background: rgba(168, 173, 159, 0.5);
+}
+
+.locations {
+  display: flex;
+  gap: 4rem;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.location h2 {
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  color: var(--sage);
+  margin-bottom: 0.6rem;
+}
+.location .hours { opacity: 0.7; margin-top: 0.4rem; }
+
+/* ---------- Footer ---------- */
+.footer {
+  position: relative;
+  z-index: 1;
+  background: rgba(26, 28, 23, 0.82);
+  border-top: 1px solid rgba(168, 173, 159, 0.2);
+  padding: 4rem 2rem 3rem;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: rgba(234, 232, 218, 0.85);
+}
+.footer-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.footer-photo {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.footer-col p + p { margin-top: 1rem; }
+.footer a:hover { color: var(--sage); }
+.social { display: flex; gap: 1rem; }
+.social a { display: inline-flex; }
+.disclaimer {
+  grid-column: 1 / -1;
+  font-style: italic;
+  font-size: 0.72rem;
+  color: rgba(234, 232, 218, 0.55);
+  max-width: 72ch;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .hero { padding: 1.4rem 1.4rem 2.5rem; }
+  .logo { margin-top: 1rem; }
+  .pillars { flex-direction: column; gap: 0.9rem; }
+  .pillars li + li::before { display: none; }
+  .locations { flex-direction: column; gap: 2rem; }
+  .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-cols { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
