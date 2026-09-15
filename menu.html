@@ -45,14 +45,28 @@
     transform-origin:top center;
   }
 
+  /* ---------- MOBILE SCALING ----------
+     --m-scale is the single knob: raise it to make the whole menu bigger.
+     Keep 640px * scale below the screen width or the sheet will overflow. */
   @media (max-width:700px){
+    :root{ --m-scale:.58; }
+    body{ padding:40px 6px 70px; }
     #scaleOuter{
-      width:325px;
-      height:480px;
+      width:calc(640px * var(--m-scale));
+      height:calc(900px * var(--m-scale));
+      margin:0 auto;
     }
     #scaleWrap{
-      transform:scale(0.5);
+      width:640px;
+      transform:scale(var(--m-scale));
+      transform-origin:top left;
     }
+    /* the two sheets behind stick out 26px to the right: this margin pulls
+       the whole stack back so the stack looks centred, not the front sheet */
+    .stage{ max-width:none; margin-right:26px; }
+  }
+  @media (max-width:380px){
+    :root{ --m-scale:.53; }
   }
 
   .kicker{
