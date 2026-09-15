@@ -49,13 +49,13 @@ a:focus-visible { outline: 1px solid var(--terracotta); outline-offset: 4px; }
   font-size: 0.78em;
   letter-spacing: 0.14em;
   padding: 0.75em 1.5em;
-  color: var(--paper);
-  background: var(--terracotta);
+  color: var(--terracotta);
+  background: transparent;
   border: 1px solid var(--terracotta);
   border-radius: 999px;
   transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
-.btn:hover { background: var(--terracotta-dark); border-color: var(--terracotta-dark); }
+.btn:hover { background: var(--terracotta); border-color: var(--terracotta); color: #fff; }
 
 /* ---------- Home ---------- */
 .backdrop {
@@ -63,7 +63,7 @@ a:focus-visible { outline: 1px solid var(--terracotta); outline-offset: 4px; }
   inset: 0;
   z-index: 0;
   background: url("assets/bowl.jpg") center 42% / cover no-repeat;
-  opacity: 0.2;
+  opacity: 0.62;
   filter: saturate(1.08);
 }
 .backdrop::after {
@@ -98,10 +98,10 @@ a:focus-visible { outline: 1px solid var(--terracotta); outline-offset: 4px; }
 }
 
 h1 {
-  font-weight: 300;
-  font-size: clamp(1.75rem, 1rem + 2.7vw, 4rem);
-  line-height: 1.15;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 1.1rem + 3.4vw, 5rem);
+  line-height: 1.1;
+  letter-spacing: 0;
   max-width: 32ch;
   color: var(--deep);
 }
@@ -114,7 +114,8 @@ h1 {
   align-items: center;
   margin-top: clamp(1.6rem, 4vh, 3rem);
   font-size: clamp(0.58rem, 1.6vw, 0.86rem);
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--terracotta);
 }
@@ -156,8 +157,12 @@ h1 {
 .footer {
   position: relative;
   z-index: 1;
-  background: var(--deep);
-  color: rgba(234, 232, 218, 0.85);
+  /* a shade deeper than the hero photo, warmed with a little terracotta */
+  background:
+    radial-gradient(ellipse 70% 90% at 92% 100%, rgba(156, 82, 54, 0.22), transparent 70%),
+    linear-gradient(180deg, #DEDACA 0%, #D3CDBB 100%);
+  color: var(--deep);
+  border-top: 1px solid rgba(57, 61, 52, 0.12);
   padding: clamp(2.5rem, 5vw, 4.5rem) var(--pad) clamp(2rem, 4vw, 3.5rem);
   font-size: 0.8em;
   line-height: 1.75;
@@ -173,14 +178,14 @@ h1 {
 .footer-photo { width: 160px; height: 160px; object-fit: cover; display: block; border-radius: 4px; }
 .footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .footer-col p + p { margin-top: 1em; }
-.footer a:hover { color: var(--sage); }
+.footer a:hover { color: var(--terracotta); }
 .social { display: flex; gap: 1rem; }
 .social a { display: inline-flex; }
 .disclaimer {
   grid-column: 1 / -1;
   font-style: italic;
   font-size: 0.88em;
-  color: rgba(234, 232, 218, 0.55);
+  color: var(--muted);
   max-width: 72ch;
   margin-top: 0.5rem;
 }
@@ -311,7 +316,7 @@ h1 {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 520px) {
-  h1 { font-size: 1.38rem; max-width: 30ch; }
+  h1 { font-size: 1.62rem; line-height: 1.3; max-width: 22ch; }
   .pillars { font-size: 0.55rem; letter-spacing: 0.12em; }
   .pillars li { padding: 0 0.7em; }
   .locations { gap: 1rem; }
@@ -319,8 +324,12 @@ h1 {
 
 @media (max-width: 720px) {
   .hero { padding-top: 1.1rem; }
-  .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-  .footer-cols { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-inner { grid-template-columns: 1fr; gap: 1.75rem; }
+  .footer-cols { grid-template-columns: 1fr; gap: 1.5rem; order: 1; }
+  /* photo sits in the bottom right corner, under the footer text */
+  /* photo bottom right, level with the privacy and cookie links, above the disclaimer */
+  .footer-photo { order: 2; justify-self: end; width: 116px; height: 116px; margin-top: -5.5rem; }
+  .disclaimer { order: 3; margin-top: -1.25rem; }
   .form { grid-template-columns: 1fr; gap: 1.25rem; }
   .form-foot { flex-direction: column; align-items: stretch; }
   .form button { width: 100%; }

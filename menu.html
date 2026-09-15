@@ -45,30 +45,6 @@
     transform-origin:top center;
   }
 
-  /* ---------- MOBILE SCALING ----------
-     --m-scale is the single knob: raise it to make the whole menu bigger.
-     Keep 640px * scale below the screen width or the sheet will overflow. */
-  @media (max-width:700px){
-    :root{ --m-scale:.58; }
-    body{ padding:40px 6px 70px; }
-    #scaleOuter{
-      width:calc(640px * var(--m-scale));
-      height:calc(900px * var(--m-scale));
-      margin:0 auto;
-    }
-    #scaleWrap{
-      width:640px;
-      transform:scale(var(--m-scale));
-      transform-origin:top left;
-    }
-    /* the two sheets behind stick out 26px to the right: this margin pulls
-       the whole stack back so the stack looks centred, not the front sheet */
-    .stage{ max-width:none; margin-right:26px; }
-  }
-  @media (max-width:380px){
-    :root{ --m-scale:.53; }
-  }
-
   .kicker{
     font-family:'Archivo', sans-serif;
     font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
@@ -347,6 +323,33 @@
     transition:background .2s ease, color .2s ease, border-color .2s ease;
   }
   .site-back:hover{ background:#f1ece0; color:#26241d; border-color:#f1ece0; }
+  /* ---------- MOBILE LAYOUT ----------
+     On phones the sheets are shown at their natural type size (no scaling):
+     narrower, single column and as tall as their content, so the menu is
+     readable while the stack, the tabs and the flip stay interactive. */
+  @media (max-width:700px){
+    body{ padding:62px 10px 60px; }
+    #scaleOuter{ width:100%; }
+    #scaleWrap{ width:100%; transform:none; }
+    .stage{
+      width:100%; max-width:none; height:auto; min-height:900px;
+      perspective-origin:50% 50%;
+    }
+    .sheet[data-cat="drinks"],
+    .sheet[data-cat="salty"],
+    .sheet[data-cat="sweets"]{
+      width:calc(100% - 20px);
+      height:auto;
+      padding:26px 20px 22px;
+    }
+    .sheet-inner{ height:auto; overflow:visible; padding-bottom:70px; }
+    .grid2{ grid-template-columns:1fr; gap:0; }
+    .note-line{ white-space:normal; }
+    .icon-key{ margin-top:22px; }
+    .page-label{ font-size:34px; bottom:20px; left:22px; }
+    .emblem{ width:44px; height:44px; bottom:16px; right:20px; }
+    .paperclip{ left:24px; }
+  }
 </style>
 </head>
 <body>
@@ -925,11 +928,29 @@
   </div>
 
 <script>
-  const positions = [
-    { x:0,  y:0,  r:0    },
-    { x:14, y:10, r:1.4  },
-    { x:26, y:20, r:2.6  },
-  ];
+  const isPhone = () => window.matchMedia('(max-width:700px)').matches;
+  const positions = isPhone()
+    ? [ { x:0, y:0, r:0 }, { x:7, y:6, r:.8 }, { x:14, y:12, r:1.6 } ]
+    : [ { x:0, y:0, r:0 }, { x:14, y:10, r:1.4 }, { x:26, y:20, r:2.6 } ];
+
+  /* on phones the sheets are as tall as their content, so the stage has to
+     follow the height of whichever sheet is on top */
+  function syncStageHeight(){
+    const stage = document.getElementById('stage');
+    const sheets = document.querySelectorAll('.sheet');
+    if (!isPhone()) {
+      stage.style.height = '';
+      sheets.forEach(el => { el.style.height = ''; });
+      return;
+    }
+    let tallest = 0;
+    sheets.forEach(el => { el.style.height = 'auto'; });
+    sheets.forEach(el => { tallest = Math.max(tallest, el.offsetHeight); });
+    /* same height for all three, so the stack reads as clean layers */
+    sheets.forEach(el => { el.style.height = tallest + 'px'; });
+    stage.style.height = (tallest + 30) + 'px';
+  }
+  window.addEventListener('resize', syncStageHeight);
   const DEFAULT_ORDER = ['drinks','salty','sweets'];
   let order = DEFAULT_ORDER.slice(); // front(small) -> back(large)
 
@@ -1058,6 +1079,8 @@
   ['drinks','salty','sweets'].forEach(attachDrag);
 
   layout();
+  syncStageHeight();
+  window.addEventListener('load', syncStageHeight);
 </script>
 
 </body>
