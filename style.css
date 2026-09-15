@@ -63,7 +63,7 @@ a:focus-visible { outline: 1px solid var(--terracotta); outline-offset: 4px; }
   inset: 0;
   z-index: 0;
   background: url("assets/bowl.jpg") center 42% / cover no-repeat;
-  opacity: 0.62;
+  opacity: 0.2;
   filter: saturate(1.08);
 }
 .backdrop::after {
