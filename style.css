@@ -328,7 +328,7 @@ h1 {
   .footer-cols { grid-template-columns: 1fr; gap: 1.5rem; order: 1; }
   /* photo sits in the bottom right corner, under the footer text */
   /* photo bottom right, level with the privacy and cookie links, above the disclaimer */
-  .footer-photo { order: 2; justify-self: end; width: 116px; height: 116px; margin-top: -5.5rem; }
+  .footer-photo { order: 2; justify-self: end; width: 116px; height: 150px; margin-top: -15.5rem; }
   .disclaimer { order: 3; margin-top: -1.25rem; }
   .form { grid-template-columns: 1fr; gap: 1.25rem; }
   .form-foot { flex-direction: column; align-items: stretch; }
