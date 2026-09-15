@@ -88,11 +88,11 @@ a:focus-visible { outline: 1px solid var(--sage); outline-offset: 4px; }
 }
 
 h1 {
-  font-weight: 300;
-  font-size: clamp(1.75rem, 1rem + 2.7vw, 4rem);
-  line-height: 1.15;
-  letter-spacing: 0.02em;
-  max-width: 32ch;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 1.2rem + 3.4vw, 5rem);
+  line-height: 1.1;
+  letter-spacing: 0;
+  max-width: 28ch;
 }
 
 .pillars {
@@ -347,7 +347,7 @@ h1 {
 }
 
 @media (max-width: 520px) {
-  h1 { font-size: 1.38rem; max-width: 30ch; }
+  h1 { font-size: 1.7rem; max-width: 24ch; }
   .pillars { font-size: 0.55rem; letter-spacing: 0.12em; }
   .pillars li { padding: 0 0.7em; }
   .locations { gap: 1rem; }
