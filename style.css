@@ -112,10 +112,10 @@ h1 {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  margin-top: clamp(1.6rem, 4vh, 3rem);
-  font-size: clamp(0.72rem, 0.45rem + 0.65vw, 1.15rem);
+  margin-top: 0;
+  font-size: clamp(1.3rem, 0.9rem + 2vw, 2.6rem);
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--terracotta);
 }
@@ -183,19 +183,11 @@ h1 {
   align-items: start;
 }
 .footer-photo { width: 160px; height: 160px; object-fit: cover; display: block; border-radius: 4px; }
-.footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.footer-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 .footer-col p + p { margin-top: 1em; }
 .footer a:hover { color: var(--terracotta); }
 .social { display: flex; gap: 1rem; }
 .social a { display: inline-flex; }
-.disclaimer {
-  grid-column: 1 / -1;
-  font-style: italic;
-  font-size: 0.88em;
-  color: var(--muted);
-  max-width: 72ch;
-  margin-top: 0.5rem;
-}
 
 /* ---------- Inner pages ---------- */
 .page {
@@ -323,8 +315,7 @@ h1 {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 520px) {
-  h1 { font-size: 1.62rem; line-height: 1.3; max-width: 22ch; }
-  .pillars { font-size: 0.78rem; letter-spacing: 0.14em; }
+  .pillars { font-size: 1.1rem; letter-spacing: 0.1em; }
   .locations { gap: 1rem; }
 }
 
@@ -336,9 +327,7 @@ h1 {
   .footer-inner { grid-template-columns: 1fr; gap: 1.75rem; }
   .footer-cols { grid-template-columns: 1fr; gap: 1.5rem; order: 1; }
   /* photo sits in the bottom right corner, under the footer text */
-  /* photo bottom right, level with the privacy and cookie links, above the disclaimer */
   .footer-photo { order: 2; justify-self: end; width: 116px; height: 116px; margin-top: -5.5rem; }
-  .disclaimer { order: 3; margin-top: -1.25rem; }
   .form { grid-template-columns: 1fr; gap: 1.25rem; }
   .form-foot { flex-direction: column; align-items: stretch; }
   .form button { width: 100%; }
