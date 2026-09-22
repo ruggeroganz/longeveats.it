@@ -37,11 +37,13 @@ a:focus-visible { outline: 1px solid var(--terracotta); outline-offset: 4px; }
   width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
 }
+.topbar .logo { grid-column: 2; }
+.topbar .btn { grid-column: 3; justify-self: end; }
 .logo img { width: clamp(150px, 15vw, 260px); height: auto; display: block; }
 
 .btn {
@@ -84,7 +86,8 @@ a:focus-visible { outline: 1px solid var(--terracotta); outline-offset: 4px; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--pad) var(--pad) clamp(1.75rem, 5vh, 4rem);
+  --walkins-gap: clamp(1.75rem, 5vh, 4rem);
+  padding: var(--pad) var(--pad) var(--walkins-gap);
 }
 
 .hero-body {
@@ -138,7 +141,7 @@ h1 {
   justify-content: center;
   gap: clamp(1.5rem, 6vw, 6rem);
   text-align: center;
-  font-size: clamp(0.72rem, 1.9vw, 0.9rem);
+  font-size: clamp(0.72rem, 1.9vw, 1.125rem);
   line-height: 1.6;
   color: var(--deep);
 }
@@ -153,10 +156,12 @@ h1 {
 }
 .location .hours { color: var(--muted); margin-top: 0.3em; }
 .walkins {
-  margin-top: clamp(0.8rem, 1.6vh, 1.1rem);
+  /* same space above as the hero padding below it: the line sits exactly
+     halfway between the locations and the footer line */
+  margin-top: var(--walkins-gap);
   text-align: center;
   font-style: italic;
-  font-size: 0.82em;
+  font-size: calc(0.82em - 1px);
   color: var(--muted);
 }
 
@@ -314,23 +319,25 @@ h1 {
 .mini-footer a:hover { color: var(--terracotta); }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 520px) {
-  .pillars { font-size: 1.1rem; letter-spacing: 0.1em; }
-  .locations { gap: 1rem; }
-}
-
 @media (max-width: 720px) {
   .hero { padding-top: 1.1rem; }
   .pillars { flex-direction: column; gap: 0.7em; }
   .pillars li { padding: 0; }
   .pillars li + li::before { display: none; }
-  .footer-inner { grid-template-columns: 1fr; gap: 1.75rem; }
-  .footer-cols { grid-template-columns: 1fr; gap: 1.5rem; order: 1; }
-  /* photo sits in the bottom right corner, under the footer text */
-  .footer-photo { order: 2; justify-self: end; width: 116px; height: 116px; margin-top: -5.5rem; }
+  /* text on the left, photo on the right, exactly the same height:
+     the photo adds no height of its own and stretches to the text block */
+  .footer-inner { grid-template-columns: minmax(0, 1fr) 116px; gap: 1.25rem; align-items: stretch; }
+  .footer-cols { grid-column: 1; grid-row: 1; grid-template-columns: 1fr; gap: 0.9rem; }
+  .footer-photo { grid-column: 2; grid-row: 1; width: 100%; height: 0; min-height: 100%; }
   .form { grid-template-columns: 1fr; gap: 1.25rem; }
   .form-foot { flex-direction: column; align-items: stretch; }
   .form button { width: 100%; }
+}
+
+@media (max-width: 520px) {
+  /* 1.1rem + 20%; space between the lines 0.77rem + 35% */
+  .pillars { font-size: 1.32rem; letter-spacing: 0.1em; gap: 1.04rem; }
+  .locations { gap: 1rem; margin-bottom: 0.4rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
