@@ -64,18 +64,18 @@ a:focus-visible { outline: 1px solid var(--terracotta); outline-offset: 4px; }
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: url("assets/bowl.jpg") center 42% / cover no-repeat;
-  opacity: 0.62;
-  filter: saturate(1.08);
+  background: url("assets/bowl.jpg") center 45% / cover no-repeat;
+  opacity: 0.85;
+  filter: saturate(1.12) contrast(1.32);
 }
 .backdrop::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 85% 70% at 90% 95%, rgba(156, 82, 54, 0.22), transparent 70%),
-    radial-gradient(ellipse 75% 65% at 6% 8%, rgba(168, 173, 159, 0.4), transparent 70%),
-    linear-gradient(180deg, rgba(243, 239, 228, 0.92) 0%, rgba(243, 239, 228, 0.7) 42%, rgba(234, 232, 218, 0.94) 100%);
+    radial-gradient(ellipse 85% 70% at 90% 95%, rgba(156, 82, 54, 0.18), transparent 70%),
+    radial-gradient(ellipse 75% 65% at 6% 8%, rgba(168, 173, 159, 0.34), transparent 70%),
+    linear-gradient(180deg, rgba(243, 239, 228, 0.9) 0%, rgba(243, 239, 228, 0.52) 42%, rgba(234, 232, 218, 0.92) 100%);
 }
 
 .hero {
