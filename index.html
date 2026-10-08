@@ -14,9 +14,9 @@
 </head>
 <body class="home">
 
-  <div class="backdrop" aria-hidden="true"></div>
-
   <header class="hero">
+    <!-- the photo lives inside the first screen, so it scrolls away with it -->
+    <div class="backdrop" aria-hidden="true"></div>
     <nav class="topbar">
       <a class="logo" href="./">
         <img src="assets/logo.png" alt="LONGEVEATS — Conscious Food" width="360" height="136">
@@ -66,5 +66,28 @@
     </div>
   </footer>
 
+  <script>
+    /* as the page scrolls, the text fades out exactly where it meets the
+       bottom of the fixed header; the photo is left untouched */
+    (function () {
+      var header = document.querySelector('.topbar');
+      var blocks = document.querySelectorAll('.pillars, .locations, .walkins');
+      var ticking = false;
+      var update = function () {
+        var line = header.getBoundingClientRect().bottom + 20;
+        blocks.forEach(function (el) {
+          var cut = Math.max(0, line - el.getBoundingClientRect().top);
+          el.style.setProperty('--cut', cut + 'px');
+        });
+        ticking = false;
+      };
+      var request = function () {
+        if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+      };
+      window.addEventListener('scroll', request, { passive: true });
+      window.addEventListener('resize', request);
+      update();
+    })();
+  </script>
 </body>
 </html>
