@@ -444,14 +444,15 @@ h1 {
   text-shadow: none;
 }
 .nav-panel > a:not(.order-now):hover { background: rgba(57, 61, 52, 0.06); color: var(--terracotta); }
-.nav-panel .order-now { margin: 0.45rem 0.3rem 0.3rem; justify-content: space-between; }
+.nav-panel .order-now { margin: 0.45rem 0.3rem 0.3rem; justify-content: center; }
 
 /* Order now: outlined pill with the Glovo mark */
 .order-now {
   display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 0.5rem 0.55rem 0.5rem 1rem;
+  /* baseline: the bottom of the Glovo wordmark sits on the same line as ORDER */
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 0.62rem 1.05rem 0.62rem 1.1rem;
   border: 1.5px solid var(--terracotta);
   border-radius: 999px;
   color: var(--terracotta);
@@ -463,21 +464,13 @@ h1 {
 }
 .order-now:hover,
 .footer .order-now:hover,
-.mini-footer .order-now:hover { background: var(--terracotta); color: #fff; }
+.mini-footer .order-now:hover { background: rgba(156, 82, 54, 0.1); }
 .glovo-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.28rem 0.6rem;
-  border-radius: 999px;
-  background: #fff;
-  color: #1d1d1b;
-  font-size: 0.86rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  text-transform: none;
+  display: inline-block;
+  line-height: 0;
+  background: transparent;
 }
 .order-now img { height: 18px; width: auto; display: block; }
-.glovo-chip img { height: 17px; }
 
 /* inner pages: header sits above the content so the panel overlaps it */
 .page-top { position: relative; z-index: 40; display: flex; justify-content: space-between; align-items: center; }
@@ -679,38 +672,50 @@ h1 {
   font-size: 1.05rem;
 }
 
-/* desktop: the navigation drops down as a full width bar under the header */
-@media (min-width: 901px) {
-  .nav { position: static; }
-  .nav-panel {
-    left: 0;
-    right: 0;
-    top: 100%;
-    min-width: 0;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(1.8rem, 3.5vw, 3.5rem);
-    padding: 1.3rem max(var(--pad), calc((100% - var(--content-max)) / 2));
-    border-radius: 0;
-    box-shadow: 0 18px 40px rgba(40, 22, 14, 0.18);
-    transform: translateY(-10px);
-  }
-  .nav-panel > a:not(.order-now) {
-    padding: 0.4rem 0;
-    border-radius: 0;
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    border-bottom: 1px solid transparent;
-  }
-  .nav-panel > a:not(.order-now):hover { background: none; border-bottom-color: currentColor; }
-  .nav-panel .order-now { margin: 0 0 0 clamp(0.5rem, 2vw, 2rem); }
-}
 
 /* while the navigation is open the pillars step back, so nothing peeks out under the bar */
 .pillars { transition: opacity 0.25s ease; }
 .nav-open .pillars { opacity: 0; }
 
-/* on the light inner pages the bar is a shade deeper than the page */
-.page .nav-panel { background: rgba(232, 227, 212, 0.98); }
+
+/* desktop: classic navigation, links set in the header next to the logo */
+@media (min-width: 901px) {
+  .nav-toggle { display: none; }
+  .nav { position: static; }
+  .nav-panel {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    min-width: 0;
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(1.4rem, 2.6vw, 2.6rem);
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .nav-panel > a:not(.order-now) {
+    padding: 0.3rem 0;
+    border-radius: 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--deep);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s, color 0.25s;
+  }
+  .nav-panel > a:not(.order-now):hover { background: none; color: var(--terracotta); border-bottom-color: currentColor; }
+  .nav-panel .order-now { margin: 0 0 0 0.4rem; }
+  /* home: on the photo the links are cream like the logo, Order is a cream pill */
+  .home .nav-panel > a:not(.order-now) {
+    color: var(--cream);
+    text-shadow: 0 1px 2px rgba(40, 22, 14, 0.4), 0 2px 12px rgba(40, 22, 14, 0.35);
+  }
+  .home .nav-panel > a:not(.order-now):hover { color: #fff; }
+  .home .nav-panel .order-now { background: var(--cream); border-color: var(--cream); }
+  .home .nav-panel .order-now:hover { background: #fff; border-color: #fff; }
+}
