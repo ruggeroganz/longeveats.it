@@ -10,15 +10,33 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
   <link rel="stylesheet" href="style.css">
+  <script src="site.js" defer></script>
 </head>
 <body class="page">
 
-  <header class="topbar page-top">
-    <a class="logo" href="./">
-      <img src="assets/logo-dark.png" alt="LONGEVEATS — Conscious Food" width="360" height="136">
-    </a>
-    <a class="btn" href="./">Back</a>
-  </header>
+  <nav class="topbar page-top">
+      <a class="logo" href="./">
+        <img src="assets/logo-dark.png" alt="LONGEVEATS — Conscious Food" width="360" height="136">
+      </a>
+      <div class="nav">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-panel" id="site-nav">
+          <a href="menu.html">View the menu</a>
+          <a href="about.html">About us</a>
+          <a href="work-with-us.html">Work with us</a>
+          <a href="locations.html">Locations</a>
+          <a class="order-now" href="https://glovoapp.com/en/it/milano/stores/longeveats-mil" target="_blank" rel="noopener">
+            <span>Order now</span>
+            <!-- Glovo logo: download the official badge from Glovo's partner brand assets,
+                 save it as assets/glovo-logo.svg and replace the span below with
+                 <img src="assets/glovo-logo.svg" alt="Glovo" height="18"> -->
+            <span class="glovo-chip">Glovo</span>
+          </a>
+        </div>
+      </div>
+    </nav>
 
   <main class="doc">
     <h1>Privacy policy</h1>
@@ -48,6 +66,19 @@
   </main>
 
   <footer class="mini-footer">
+    <div class="mini-links">
+      <a href="menu.html">View the menu</a>
+      <a href="about.html">About us</a>
+      <a href="work-with-us.html">Work with us</a>
+      <a href="locations.html">Locations</a>
+      <a class="order-now" href="https://glovoapp.com/en/it/milano/stores/longeveats-mil" target="_blank" rel="noopener">
+        <span>Order now</span>
+        <!-- Glovo logo: download the official badge from Glovo's partner brand assets,
+             save it as assets/glovo-logo.svg and replace the span below with
+             <img src="assets/glovo-logo.svg" alt="Glovo" height="18"> -->
+        <span class="glovo-chip">Glovo</span>
+      </a>
+    </div>
     <p>Conscious Srl Società Benefit · Via Caradosso 18, 20123 Milano · VAT IT14680570968</p>
     <p><a href="privacy.html">Privacy policy</a> · <a href="cookie.html">Cookie policy</a> · © 2026 LONGEVEATS</p>
   </footer>

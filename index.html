@@ -11,6 +11,7 @@
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
   <link rel="stylesheet" href="style.css">
+  <script src="site.js" defer></script>
 </head>
 <body class="home">
 
@@ -21,7 +22,24 @@
       <a class="logo" href="./">
         <img src="assets/logo.png" alt="LONGEVEATS — Conscious Food" width="360" height="136">
       </a>
-      <a class="btn" href="menu.html">View the menu</a>
+      <div class="nav">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-panel" id="site-nav">
+          <a href="menu.html">View the menu</a>
+          <a href="about.html">About us</a>
+          <a href="work-with-us.html">Work with us</a>
+          <a href="locations.html">Locations</a>
+          <a class="order-now" href="https://glovoapp.com/en/it/milano/stores/longeveats-mil" target="_blank" rel="noopener">
+            <span>Order now</span>
+            <!-- Glovo logo: download the official badge from Glovo's partner brand assets,
+                 save it as assets/glovo-logo.svg and replace the span below with
+                 <img src="assets/glovo-logo.svg" alt="Glovo" height="18"> -->
+            <span class="glovo-chip">Glovo</span>
+          </a>
+        </div>
+      </div>
     </nav>
 
     <div class="hero-body">
@@ -49,7 +67,7 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <img class="footer-photo" src="assets/interior.jpg" alt="Inside a LONGEVEATS café" width="160" height="160">
+      <img class="footer-photo" src="assets/interior.jpg" alt="Inside a LONGEVEATS café" width="120" height="200">
 
       <div class="footer-cols">
         <div class="footer-col">
@@ -61,6 +79,19 @@
         </div>
         <div class="footer-col">
           <p>Conscious Srl Società Benefit<br>Via Caradosso 18, 20123 Milano<br>VAT IT14680570968</p>
+        </div>
+        <div class="footer-col footer-nav">
+          <a href="menu.html">View the menu</a>
+          <a href="about.html">About us</a>
+          <a href="work-with-us.html">Work with us</a>
+          <a href="locations.html">Locations</a>
+          <a class="order-now" href="https://glovoapp.com/en/it/milano/stores/longeveats-mil" target="_blank" rel="noopener">
+          <span>Order now</span>
+          <!-- Glovo logo: download the official badge from Glovo's partner brand assets,
+               save it as assets/glovo-logo.svg and replace the span below with
+               <img src="assets/glovo-logo.svg" alt="Glovo" height="18"> -->
+          <span class="glovo-chip">Glovo</span>
+        </a>
         </div>
       </div>
     </div>
