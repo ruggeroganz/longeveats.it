@@ -23,16 +23,13 @@
           <span></span><span></span><span></span>
         </button>
         <div class="nav-panel" id="site-nav">
-          <a href="menu.html">View the menu</a>
+          <a href="menu.html">Menu</a>
           <a href="about.html">About us</a>
           <a href="work-with-us.html">Work with us</a>
           <a href="locations.html">Locations</a>
           <a class="order-now" href="https://glovoapp.com/en/it/milano/stores/longeveats-mil" target="_blank" rel="noopener">
             <span>Order now</span>
-            <!-- Glovo logo: download the official badge from Glovo's partner brand assets,
-                 save it as assets/glovo-logo.svg and replace the span below with
-                 <img src="assets/glovo-logo.svg" alt="Glovo" height="18"> -->
-            <span class="glovo-chip">Glovo</span>
+            <span class="glovo-chip"><img src="assets/glovo-logo.png" alt="Glovo" width="73" height="24"></span>
           </a>
         </div>
       </div>
@@ -43,11 +40,20 @@
     <p class="lede">We are growing and looking for people who care about good food: at the counter, in the kitchen and in the running of our cafés and labs. Tell us who you are and what you would like to do with us.</p>
 
     <!--
-      PLACEHOLDER: GitHub Pages serves static files only, so this form needs an external
-      endpoint. Replace the action below with your form service URL (for example Formspree
-      or Getform) and remove this comment. Until then the form will not send anything.
+      FORM: sent through FormSubmit (formsubmit.co).
+      1. Replace YOUR-EMAIL@example.com below with the address that should receive applications.
+      2. Publish, then send one test application from the live site.
+      3. FormSubmit emails you an activation link: click it once.
+      4. From then on every application arrives in that inbox.
+      After activation FormSubmit also gives you a random alias for the address:
+      you can paste that instead of the email, so the address is not visible in the page code.
     -->
-    <form class="form" action="#" method="post">
+    <p class="form-sent" hidden>Thank you, your application has been sent. We will be in touch.</p>
+    <form class="form" action="https://formsubmit.co/YOUR-EMAIL@example.com" method="POST">
+      <input type="hidden" name="_subject" value="New application from longeveats.it">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="">
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label>
         <span>Full name</span>
         <input type="text" name="name" autocomplete="name" required>
@@ -97,21 +103,29 @@
 
   <footer class="mini-footer">
     <div class="mini-links">
-      <a href="menu.html">View the menu</a>
+      <a href="menu.html">Menu</a>
       <a href="about.html">About us</a>
       <a href="work-with-us.html">Work with us</a>
       <a href="locations.html">Locations</a>
       <a class="order-now" href="https://glovoapp.com/en/it/milano/stores/longeveats-mil" target="_blank" rel="noopener">
         <span>Order now</span>
-        <!-- Glovo logo: download the official badge from Glovo's partner brand assets,
-             save it as assets/glovo-logo.svg and replace the span below with
-             <img src="assets/glovo-logo.svg" alt="Glovo" height="18"> -->
-        <span class="glovo-chip">Glovo</span>
+        <span class="glovo-chip"><img src="assets/glovo-logo.png" alt="Glovo" width="73" height="24"></span>
       </a>
     </div>
     <p>Conscious Srl Società Benefit · Via Caradosso 18, 20123 Milano · VAT IT14680570968</p>
     <p><a href="privacy.html">Privacy policy</a> · <a href="cookie.html">Cookie policy</a> · © 2026 LONGEVEATS</p>
   </footer>
 
+  <script>
+    /* after sending, FormSubmit brings the visitor back here with ?sent=1 */
+    (function () {
+      var next = document.querySelector('input[name="_next"]');
+      next.value = window.location.href.split('?')[0] + '?sent=1';
+      if (/[?&]sent=1/.test(window.location.search)) {
+        document.querySelector('.form-sent').hidden = false;
+        document.querySelector('.form').hidden = true;
+      }
+    })();
+  </script>
 </body>
 </html>

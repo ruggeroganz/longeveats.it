@@ -147,7 +147,7 @@ h1 {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  font-size: clamp(1.05rem, 0.4rem + 1.75vw, 2.4rem);
+  font-size: clamp(0.95rem, 0.35rem + 1.55vw, 2.1rem);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -218,11 +218,11 @@ h1 {
   max-width: min(var(--content-max), 1080px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 150px 1fr;
   gap: 3rem;
   align-items: start;
 }
-.footer-photo { width: 120px; height: 200px; object-fit: cover; display: block; border-radius: 4px; }
+.footer-photo { width: 150px; height: 180px; object-fit: cover; display: block; border-radius: 4px; }
 .footer-cols { display: grid; grid-template-columns: auto 1fr auto; gap: 2rem 3.5rem; }
 .footer-nav { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
 .footer-nav .order-now { margin-top: 0.7rem; }
@@ -240,16 +240,7 @@ h1 {
   position: relative;
   isolation: isolate;
 }
-/* Same photo as the home page, kept very quiet so the text stays readable */
-.page::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(243, 239, 228, 0.93) 0%, rgba(234, 232, 218, 0.96) 100%),
-    url("assets/bowl.jpg") center 42% / cover no-repeat;
-}
+
 .page-top { padding: var(--pad); max-width: var(--content-max); margin: 0 auto; width: 100%; }
 
 .lede {
@@ -360,14 +351,14 @@ h1 {
   :root { --hdr-pad: 1.1rem; }
   .backdrop { --fade-start: 60%; }
   .hero-body { padding-top: clamp(2rem, 6vh, 3.5rem); }
-  .pillars { flex-direction: column; gap: 0.42rem; font-size: 1.08rem; }
+  .pillars { flex-direction: column; gap: 0.42rem; font-size: 0.98rem; }
   .pillars li { padding: 0; }
   .pillars li + li::before { display: none; }
   /* text on the left, photo on the right, exactly the same height:
      the photo adds no height of its own and stretches to the text block */
-  .footer-inner { grid-template-columns: minmax(0, 1fr) 92px; gap: 1.25rem; align-items: stretch; }
+  .footer-inner { grid-template-columns: minmax(0, 1fr) 124px; gap: 1.25rem; align-items: start; }
   .footer-cols { grid-column: 1; grid-row: 1; grid-template-columns: 1fr; gap: 0.9rem; }
-  .footer-photo { grid-column: 2; grid-row: 1; width: 100%; height: 0; min-height: 100%; }
+  .footer-photo { grid-column: 2; grid-row: 1; width: 100%; height: 150px; }
   .footer-nav { gap: 0.15rem; }
   .form { grid-template-columns: 1fr; gap: 1.25rem; }
   .form-foot { flex-direction: column; align-items: stretch; }
@@ -382,7 +373,7 @@ h1 {
   .pillars { line-height: 1; }
   .hero-body {
     padding-top: max(1rem, calc((45vh - 11.07vw - var(--hdr)) / 2
-      - clamp(1.05rem, 0.4rem + 1.75vw, 2.4rem) / 2));
+      - clamp(0.95rem, 0.35rem + 1.55vw, 2.1rem) / 2));
   }
 }
 
@@ -471,9 +462,9 @@ h1 {
 .glovo-chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.2rem 0.7rem;
+  padding: 0.28rem 0.6rem;
   border-radius: 999px;
-  background: #FFC244;
+  background: #fff;
   color: #1d1d1b;
   font-size: 0.86rem;
   font-weight: 800;
@@ -481,6 +472,7 @@ h1 {
   text-transform: none;
 }
 .order-now img { height: 18px; width: auto; display: block; }
+.glovo-chip img { height: 17px; }
 
 /* inner pages: header sits above the content so the panel overlaps it */
 .page-top { position: relative; z-index: 40; display: flex; justify-content: space-between; align-items: center; }
@@ -669,4 +661,15 @@ h1 {
   .loc { grid-template-columns: 1fr; }
   .loc-map, .loc-map iframe, .loc-map-fallback { min-height: 240px; }
   .mini-links { gap: 0.4rem 1.1rem; }
+}
+
+/* form helpers */
+[hidden] { display: none !important; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-sent {
+  padding: 1.4rem 1.6rem;
+  border-radius: 12px;
+  background: rgba(168, 173, 159, 0.25);
+  color: var(--deep);
+  font-size: 1.05rem;
 }
