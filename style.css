@@ -222,7 +222,7 @@ h1 {
   gap: 3rem;
   align-items: start;
 }
-.footer-photo { width: 150px; height: 180px; object-fit: cover; display: block; border-radius: 4px; }
+.footer-photo { width: 150px; height: 180px; object-fit: cover; object-position: center 30%; display: block; border-radius: 4px; }
 .footer-cols { display: grid; grid-template-columns: auto 1fr auto; gap: 2rem 3.5rem; }
 .footer-nav { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
 .footer-nav .order-now { margin-top: 0.7rem; }
@@ -241,7 +241,7 @@ h1 {
   isolation: isolate;
 }
 
-.page-top { padding: var(--pad); max-width: var(--content-max); margin: 0 auto; width: 100%; }
+.page-top { padding: var(--pad) max(var(--pad), calc((100% - var(--content-max)) / 2)); width: 100%; max-width: none; margin: 0; }
 
 .lede {
   color: var(--muted);
@@ -370,9 +370,14 @@ h1 {
 }
 
 @media (min-width: 721px) {
+  /* desktop: a wider version of the same photo, so the bowl sits smaller and
+     lower: its rim is at 36% of the screen height and its base at about 70%,
+     leaving clear space for the pillars above and the locations below */
+  .backdrop { background-image: url("assets/bowl-wide.jpg"); background-position: center top; }
   .pillars { line-height: 1; }
+  /* pillars exactly halfway between the logo and the rim of the bowl */
   .hero-body {
-    padding-top: max(1rem, calc((45vh - 11.07vw - var(--hdr)) / 2
+    padding-top: max(1rem, calc((36vh - var(--hdr)) / 2
       - clamp(0.95rem, 0.35rem + 1.55vw, 2.1rem) / 2));
   }
 }
@@ -673,3 +678,39 @@ h1 {
   color: var(--deep);
   font-size: 1.05rem;
 }
+
+/* desktop: the navigation drops down as a full width bar under the header */
+@media (min-width: 901px) {
+  .nav { position: static; }
+  .nav-panel {
+    left: 0;
+    right: 0;
+    top: 100%;
+    min-width: 0;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1.8rem, 3.5vw, 3.5rem);
+    padding: 1.3rem max(var(--pad), calc((100% - var(--content-max)) / 2));
+    border-radius: 0;
+    box-shadow: 0 18px 40px rgba(40, 22, 14, 0.18);
+    transform: translateY(-10px);
+  }
+  .nav-panel > a:not(.order-now) {
+    padding: 0.4rem 0;
+    border-radius: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+  }
+  .nav-panel > a:not(.order-now):hover { background: none; border-bottom-color: currentColor; }
+  .nav-panel .order-now { margin: 0 0 0 clamp(0.5rem, 2vw, 2rem); }
+}
+
+/* while the navigation is open the pillars step back, so nothing peeks out under the bar */
+.pillars { transition: opacity 0.25s ease; }
+.nav-open .pillars { opacity: 0; }
+
+/* on the light inner pages the bar is a shade deeper than the page */
+.page .nav-panel { background: rgba(232, 227, 212, 0.98); }

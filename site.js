@@ -9,6 +9,7 @@
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
     panel.classList.toggle('is-open', open);
+    document.body.classList.toggle('nav-open', open);
   };
 
   toggle.addEventListener('click', function (e) {
